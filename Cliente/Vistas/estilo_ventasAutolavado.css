@@ -1,0 +1,255 @@
+.container-fluid {
+    background-color: transparent;
+    padding: 10px;
+    margin-top: 40px;
+    text-align: center;
+    width: 700px;
+  }
+  
+  .container-fluid h1 {
+    color: #333;
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  #table {
+    background-color: rgba(6, 68, 105, 0.6); /* Color de fondo de la tabla */
+  }
+  
+  th {
+    background-color: rgba(6, 68, 105, 0.4); /* Color de fondo de las celdas de encabezado */
+    color: black; /* Color del texto en las celdas de encabezado */
+  }
+  
+  td {
+    background-color: #fff; /* Color de fondo de las celdas de datos */
+  }
+  
+  .top {
+    top: 0;
+    height: 100vh;
+    background-color: white;
+    display: grid;
+    place-items: center;
+    transition: 0.4s;
+  }
+  
+  .close {
+    top: 5em;
+    left: 70%;
+  }
+  
+  .translate {
+    transform: translateY(-100%);
+  }
+  
+  .selected-row {
+    background-color: gray;
+  }
+  
+  .btn-success,
+  .btn-warning,
+  .btn-primary,
+  .btn-danger {
+    background-color: #064469;
+    border-color: #064469;
+    font-weight: bold;
+    color: white;
+  }
+  
+  body {
+    background-image: url("ImagenProyecto/LogoAutolavado.jpg");
+    background-size: 250px 250px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: -35px;
+  }
+  
+  .contenedor-padre {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .contenedor {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 400px;
+    height: 300px;
+    margin: 60px 0px 100px 100px; /* Alinear a la derecha */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative; /* Agregar esta línea */
+  }
+  
+  
+  form {
+    width: 100%;
+  }
+  
+  form .grupo_boton {
+    position: relative;
+  }
+  
+  .grupo_boton button {
+    position: relative;
+    padding: 12px 82px 12px 42px;
+    margin-bottom: 0px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .grupo_boton button:focus {
+    border-color: #00a8ff;
+  }
+  
+  .grupo_boton i {
+    margin-right: 8px;
+    margin-left: -4px;
+  }
+  
+  .contenedor .botones {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .contenedor .botones button {
+    padding: 10px 70px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center; /* Añade esta línea para alinear el texto */
+  }
+  
+  .contenedor .botones .btn-success {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    text-align: center;
+    margin-bottom: 25px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contenedor .botones .btn-warning {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contenedor .botones .btn-danger {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilos generales de las ventanas modales */
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+  }
+  
+  .close-button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    background-color: #064469;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .modal-content button {
+    margin-top: 10px;
+    background-color: #064469;
+    border: none;
+    color: #fff;
+  }
+  
+  .modal-content {
+    min-height: 150px; /* Establece una altura mínima para asegurar espacio para el contenido */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente los elementos */
+    gap: 1rem;
+  }
+  
+  .close-button {
+    margin-top: 1rem;
+  }
+  
+  .modal p {
+    margin-bottom: 55px;
+  }
+  
+  .modal button {
+    margin: 10px 10px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .modal button:hover {
+    background-color: #ddd;
+  }

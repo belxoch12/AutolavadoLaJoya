@@ -1,0 +1,145 @@
+body {
+    background-image: url("ImagenProyecto/Inicio2.jpg");
+    background-size: 950px 650px;
+    background-repeat: no-repeat;
+    
+  }
+
+ 
+
+  .contenedor-padre {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .contenedor {
+    background-color: rgba(61, 136, 171, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 450px;
+    height: 400px;
+    margin: 100px 0px 100px 900px; /* Alinear a la derecha */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    width: 100%;
+}
+
+form .grupo_boton {
+    position: relative;
+}
+
+.grupo_boton button {
+    position: relative;
+    padding: 12px 82px 12px 42px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.grupo_boton button:focus {
+    border-color: #00a8ff;
+}
+
+.grupo_boton i {
+    margin-right: 8px;
+    margin-left: -4px;
+
+}
+
+.contenedor .botones {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+}
+
+.contenedor .botones button {
+    padding: 10px 70px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+  }
+  
+
+.contenedor .botones .tienda {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    text-align: center; 
+    margin-bottom: 25px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contenedor .botones .autolavado {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.contenedor .botones .citas {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.contenedor .botones .historial {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.contenedor .botones .inventario {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contenedor .botones .cerrarsesion {
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.contenedor p {
+    margin-bottom: -40px; /* Ajustar el margen inferior del párrafo */
+    font-size: 24px; /* Aumentar el tamaño de la letra */
+    font-family: "Arial", Helvetica, Verdana; /* Cambiar el tipo de fuente */
+    font-weight: bold; /* Hacer la letra negrita */
+}

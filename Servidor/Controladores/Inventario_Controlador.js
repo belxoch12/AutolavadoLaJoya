@@ -6,8 +6,8 @@ class Inventario_Controlador{
 
     //--Función Base--//
     agregar_producto(req, res){
-        let{codigo, nombre, descripcion, cantidad, entrada, salida} = req.body
-        const Model = new Inventario_Modelo(null, codigo, nombre, descripcion, cantidad, entrada, salida)
+        let{codigo, nombre, descripcion, cantidad, entrada, salida,precio} = req.body
+        const Model = new Inventario_Modelo(null, codigo, nombre, descripcion, cantidad, entrada, salida,precio)
 
         console.log(req.body)
 
@@ -29,7 +29,7 @@ class Inventario_Controlador{
 
     consultar_producto(req,res){
         let {id_inventario} = req.params
-        const Model = new Inventario_Modelo(id_inventario, null, null, null, null, null, null)
+        const Model = new Inventario_Modelo(id_inventario, null, null, null, null, null, null,null)
 
 
         Model.consultar_producto()
@@ -50,7 +50,7 @@ class Inventario_Controlador{
     }
 
     consultar_productos(req,res){
-        const Model = new Inventario_Modelo(null, null, null, null, null, null, null)
+        const Model = new Inventario_Modelo(null, null, null, null, null, null, null,null)
         Model.consultar_productos()
         .then(result =>{
             res.send({
@@ -69,8 +69,8 @@ class Inventario_Controlador{
     }
 
     modificar_producto(req, res){
-        let {id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida} = req.body
-        const Model = new Inventario_Modelo(id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida)
+        let {id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida,precio} = req.body
+        const Model = new Inventario_Modelo(id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida,precio)
         
         console.log(req.body)
 
@@ -92,7 +92,7 @@ class Inventario_Controlador{
 
     eliminar_producto(req, res){
         let {id_inventario} = req.params
-        const Model = new Inventario_Modelo(id_inventario, null,  null, null, null, null, null)
+        const Model = new Inventario_Modelo(id_inventario, null,  null, null, null, null, null,null)
         
         console.log(req.body)
 

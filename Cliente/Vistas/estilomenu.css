@@ -126,6 +126,15 @@ form .grupo_boton {
     border-radius: 4px;
 }
 
+.contenedor .botones .precios{
+    background-color: #064469;
+    padding: 12px 80px 12px 42px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 .contenedor .botones .cerrarsesion {
     background-color: #064469;
     padding: 12px 80px 12px 42px;

@@ -40,12 +40,13 @@
               <thead>
                 <tr>
                   <th>id_inventario</th>
-                  <th>codigo</th>
-                  <th>nombre</th>
-                  <th>descripcion</th>
-                  <th>cantidad</th>
-                  <th>entrada</th>
-                  <th>salida</th>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Cantidad</th>
+                  <th>Entrada</th>
+                  <th>Salida</th>
+                  <th>Precio</th>
                 </tr>
               </thead>
               <tbody id="filas">
@@ -60,28 +61,32 @@
       <form class="form-control w-50" id="productForm">
         <h1 class="text-center">Registrar producto</h1>
         <div class="form-control border-white">
-          <label for="codigo">codigo :</label>
+          <label for="codigo">Código :</label>
           <input type="text" class="form-control w-25" id="codigo">
         </div>
         <div class="form-control border-white">
-          <label for="nombre">nombre :</label>
+          <label for="nombre">Nombre :</label>
           <input type="text" class="form-control w-50" id="nombre">
         </div>
         <div class="form-control border-white">
-          <label for="descripcion">descripcion :</label>
+          <label for="descripcion">Descripcion :</label>
           <input type="text" class="form-control" id="descripcion">
         </div>
         <div class="form-control border-white">
-          <label for="cantidad">cantidad :</label>
+          <label for="cantidad">Cantidad :</label>
           <input type="number" class="form-control w-25" id="cantidad">
         </div>
         <div class="form-control border-white">
-          <label for="entrada">entrada :</label>
+          <label for="entrada">Entrada :</label>
           <input type="number" class="form-control w-25" id="entrada">
         </div>
         <div class="form-control border-white">
-          <label for="salida">salida :</label>
+          <label for="salida">Salida :</label>
           <input type="number" class="form-control w-25" id="salida">
+        </div>
+        <div class="form-control border-white">
+          <label for="precio">Precio:</label>
+          <input type="number" class="form-control w-25" id="precio" step="0.01">
         </div>
         <div class="form-control border-white">
           <button class="btn btn-primary" id="BtnGuardar">Guardar</button>
@@ -122,6 +127,7 @@
           const cantidad = selectedRow.cells[4].innerText;
           const entrada = selectedRow.cells[5].innerText;
           const salida = selectedRow.cells[6].innerText;
+          const precio = selectedRow.cells[7].innerText;
 
           // Rellenar el formulario modal con los valores del producto seleccionado
           document.getElementById('codigo').value = codigo;
@@ -130,6 +136,7 @@
           document.getElementById('cantidad').value = cantidad;
           document.getElementById('entrada').value = entrada;
           document.getElementById('salida').value = salida;
+          document.getElementById('precio').value = precio;
 
           modal.classList.remove('translate'); // Mostrar la ventana modal
         }

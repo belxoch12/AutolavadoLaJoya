@@ -2,7 +2,7 @@ const connection = require("./conexion");
 
 class Inventario_Modelo{
 
-    constructor(id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida){
+    constructor(id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida, precio) {
         this.id_inventario = id_inventario;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -10,22 +10,45 @@ class Inventario_Modelo{
         this.cantidad = cantidad;
         this.entrada = entrada;
         this.salida = salida;
-
-        //Más atributos aquí...
+        this.precio = precio; 
     }
 
-    agregar_producto(){
-        //Logica y Sentencia SQL para relizar x operación sobre los datos
+    agregar_producto() {
         return new Promise((resolve, reject) => {
-            let SentenciaSQL = `INSERT INTO inventario(codigo, nombre, descripcion, cantidad, entrada, salida)
-            VALUES ("${(this.codigo)}", "${(this.nombre)}", "${(this.descripcion)}", ${parseInt(this.cantidad)}, ${parseInt(this.entrada)}, ${parseInt(this.salida)})`
-            connection.query(`${SentenciaSQL}`, (err, rows) => {
-                if (err || rows.length == 0) return reject(err)
-                return resolve(rows)
-            })
-        })
+            // Verificar que los valores sean números válidos antes de la conversión
+            console.log("Valores antes de la validación:", this.cantidad, this.entrada, this.salida, this.precio);
 
+            if (
+                isNaN(parseInt(this.cantidad)) ||
+                isNaN(parseInt(this.entrada)) ||
+                isNaN(parseInt(this.salida)) ||
+                isNaN(parseFloat(this.precio))
+            ) {
+                return reject(new Error("Valores numéricos inválidos"));
+            }
+    
+            let SentenciaSQL = `INSERT INTO inventario(codigo, nombre, descripcion, cantidad, entrada, salida, precio)
+                VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    
+            let values = [
+                this.codigo,
+                this.nombre,
+                this.descripcion,
+                parseInt(this.cantidad),
+                parseInt(this.entrada),
+                parseInt(this.salida),
+                parseFloat(this.precio)
+            ];
+    
+            connection.query(SentenciaSQL, values, (err, rows) => {
+                if (err || rows.length === 0) {
+                    return reject(err);
+                }
+                resolve(rows);
+            });
+        });
     }
+    
 
     consultar_producto(){
         //Logica y Sentencia SQL para relizar x operación sobre los datos
@@ -56,7 +79,7 @@ class Inventario_Modelo{
         return new Promise((resolve, reject) => {
             let SentenciaSQL = `UPDATE inventario SET nombre = "${this.nombre}", 
             descripcion = "${this.descripcion}", cantidad = ${parseInt(this.cantidad)}, entrada = ${parseInt(this.entrada)},
-             salida = ${parseInt(this.salida)} WHERE id_inventario = ${parseInt(this.id_inventario)};`
+             salida = ${parseInt(this.salida)}, precio=${parseFloat(this.precio)} WHERE id_inventario = ${parseInt(this.id_inventario)};`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)

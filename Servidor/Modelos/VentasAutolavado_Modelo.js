@@ -16,7 +16,7 @@ class VentasAutolavado_Modelo{
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {
             let SentenciaSQL = `INSERT INTO ventasautolavado(id_usuario, fecha, tipoVehiculo, costo)
-            VALUES (${parseInt(this.id_usuario)}, "${this.fecha}", "${this.tipoVehiculo}",  ${parseInt(this.costo)})`
+            VALUES (${parseInt(this.id_usuario)}, "${this.fecha}", "${this.tipoVehiculo}",  ${parseFloat(this.costo)})`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)

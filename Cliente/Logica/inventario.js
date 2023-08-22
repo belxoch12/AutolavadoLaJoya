@@ -7,6 +7,7 @@ let descripcion = document.getElementById('descripcion');
 let cantidad = document.getElementById('cantidad');
 let entrada = document.getElementById('entrada');
 let salida = document.getElementById('salida');
+let precio = document.getElementById('precio');
 const modificarVentaBtn = document.getElementById("modificarVentaBtn");
 regresarBtn.addEventListener("click", (e) => {
   location.href = "/Conexion/Cliente/Vistas/menu.html";
@@ -39,6 +40,7 @@ fetch('http://localhost:5000/consultando_productos', settings)
                 <td>${producto.cantidad}</td>
                 <td>${producto.entrada}</td>
                 <td>${producto.salida}</td>
+                <td>${producto.precio}</td>
             `;
 
       // Agregar un manejador de eventos para resaltar la fila al hacer clic en ella
@@ -78,7 +80,8 @@ BtnGuardar.addEventListener("click", (e) => {
       descripcion: descripcion.value,
       cantidad: cantidad.value,
       entrada: entrada.value,
-      salida: salida.value
+      salida: salida.value,
+      precio: precio.value
     };
 
     console.log(dataFormat);
@@ -105,7 +108,8 @@ BtnGuardar.addEventListener("click", (e) => {
         descripcion: descripcion.value,
         cantidad: cantidad.value,
         entrada: entrada.value,
-        salida: salida.value
+        salida: salida.value,
+        precio: precio.value
       };
     console.log(dataFormat);
     const settings = {

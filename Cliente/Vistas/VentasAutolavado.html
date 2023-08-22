@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,92 +18,95 @@
   </div>
   <div class="contenedor-padre">
     <div class="contenedor">
-        <div class="botones">
-        <button class="btn btn-success" id="nuevoProductoBtn"><i class="fa-solid fa-cart-plus"></i>Nuevo producto</button>
-        <button class="btn btn-warning" id="modificarVentaBtn"><i class="fa-solid fa-file-pen"></i>Modificar producto</button>
-        <button class="btn btn-warning" id="consultarVentasBtn"><i class="fa-solid fa-magnifying-glass"></i>Consultar producto</button>
-        <button class="btn btn-danger" id="eliminarVentasBtn"><i class="fa-sharp fa-solid fa-trash"></i>Eliminar producto</button>
+      <div class="botones">
+        <button class="btn btn-success" id="nuevoProductoBtn"><i class="fa-solid fa-cart-plus"></i>Nuevo
+          producto</button>
+        <button class="btn btn-warning" id="modificarVentaBtn"><i class="fa-solid fa-file-pen"></i>Modificar
+          producto</button>
+        <button class="btn btn-warning" id="consultarVentasBtn"><i class="fa-solid fa-magnifying-glass"></i>Consultar
+          producto</button>
+        <button class="btn btn-danger" id="eliminarVentasBtn"><i class="fa-sharp fa-solid fa-trash"></i>Eliminar
+          producto</button>
         <button class="btn btn-danger" id="regresarBtn"><i class="fa-solid fa-house"></i>Regresar menu</button>
       </div>
-  </div>  
-  <div class="container mt-0 position-relative">
-    <div class="row">
-      <div class="col text-center">       
-        <!-- Tabla centrada -->
-        <div class="mx-auto" style="width: fit-content; height: 100vh; display: flex; align-items: center; justify-content: center;">
-          <table class="table table-withe" id="table">
-            <thead>
-              <tr>
-                <th>id_ventasAutolavado</th>
-                <th>id_usuario</th>
-                <th>fecha</th>
-                <th>tipoVehiculo</th>
-                <th>Costo</th>
-              </tr>
-            </thead>
-            <tbody id="filas">
-            </tbody>
-          </table>
+    </div>
+    <div class="container mt-0 position-relative">
+      <div class="row">
+        <div class="col text-center">
+          <!-- Tabla centrada -->
+          <div class="mx-auto"
+            style="width: fit-content; height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <table class="table table-withe" id="table">
+              <thead>
+                <tr>
+                  <th>id_ventasAutolavado</th>
+                  <th>id_usuario</th>
+                  <th>fecha</th>
+                  <th>tipoVehiculo</th>
+                  <th>Costo</th>
+                </tr>
+              </thead>
+              <tbody id="filas">
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="position-absolute w-100 top translate" id="modal" style="background-color: rgb(17, 18, 18, 0.4)">
-    <div class="form-control w-50 border-white">
-    <form class="form-control border-white" id="productForm">
-      <h1 class="text-center">Registrar Ventas de Autolavado</h1>
-      <div class="form-control border-white">
-        <label for="id_usuario">id_usuario:</label>
-        <input type="text" class="form-control" id="id_usuario">
+    <div class="position-absolute w-100 top translate" id="modal" style="background-color: rgb(17, 18, 18, 0.4)">
+      <div class="form-control w-50 border-white">
+        <form class="form-control border-white" id="productForm">
+          <h1 class="text-center">Registrar Ventas de Autolavado</h1>
+          <div class="form-control border-white">
+            <label for="id_usuario">id_usuario:</label>
+            <input type="text" class="form-control" id="id_usuario">
+          </div>
+          <div class="form-control border-white">
+            <label for="fecha">fecha:</label>
+            <input type="date" class="form-control" id="fecha">
+          </div>
+          <div class="form-control border-white">
+            <label for="tipoVehiculo">Tipo de Vehiculo:</label>
+            <select class="form-control" id="tipoVehiculo">
+              <!-- Deja una opción por defecto -->
+              <option value="">Selecciona una opcion...</option>
+            </select>
+          </div>
+          <div class="form-control border-white">
+            <label for="costo">costo:</label>
+            <input type="number" class="form-control" id="costo" readonly>
+          </div>
+        </form>
+
+        <button class="btn btn-primary" id="BtnGuardarVenta">Guardar</button>
+        <button class="btn btn-danger close">Cerrar</button>
       </div>
-      <div class="form-control border-white">
-        <label for="fecha">fecha:</label>
-        <input type="date" class="form-control" id="fecha">
-      </div>
-      <div class="form-control border-white">
-        <label for="tipoVehiculo">tipoVehiculo:</label>
-        <select class="form-control" id="tipoVehiculo">
-          <option value="Sedan">Selecciona una opcion...</option>
-          <option value="Sedan">Sedan</option>
-          <option value="SUV">SUV</option>
-          <option value="Camioneta">Camioneta</option>
-        </select>
-      </div>
-      <div class="form-control border-white">
-        <label for="costo">costo:</label>
-        <input type="number" class="form-control" id="costo">
-      </div>      
-    </form>
-    
-      <button class="btn btn-primary" id="BtnGuardarVenta">Guardar</button>
-      <button class="btn btn-danger close">Cerrar</button>
     </div>
-  </div>
 
-  <script>
-    // Obtener referencias a los elementos del DOM
-    //const eliminarVentasBtn = document.getElementById("eliminarVentasBtn");
-    //const consultarVentasBtn = document.getElementById("consultarVentasBtn");
-    //const BtnGuardarVenta = document.getElementById("BtnGuardarVenta");
-    const nuevoProductoBtn = document.getElementById('nuevoProductoBtn');
-    const modal = document.getElementById('modal');
-    const cerrarBtn = document.querySelector('.close');
-    const productForm = document.getElementById('productForm');
-    const tableBody = document.querySelector('#table tbody');
-    const rows = tableBody.getElementsByTagName('tr');
+    <script>
+      // Obtener referencias a los elementos del DOM
+      //const eliminarVentasBtn = document.getElementById("eliminarVentasBtn");
+      //const consultarVentasBtn = document.getElementById("consultarVentasBtn");
+      //const BtnGuardarVenta = document.getElementById("BtnGuardarVenta");
+      const nuevoProductoBtn = document.getElementById('nuevoProductoBtn');
+      const modal = document.getElementById('modal');
+      const cerrarBtn = document.querySelector('.close');
+      const productForm = document.getElementById('productForm');
+      const tableBody = document.querySelector('#table tbody');
+      const rows = tableBody.getElementsByTagName('tr');
 
-    // Agregar un manejador de eventos al botón "Nuevo producto"
-    nuevoProductoBtn.addEventListener('click', function () {
-      modal.classList.remove('translate'); // Mostrar la ventana modal
-    });
+      // Agregar un manejador de eventos al botón "Nuevo producto"
+      nuevoProductoBtn.addEventListener('click', function () {
+        modal.classList.remove('translate'); // Mostrar la ventana modal
+      });
 
-    // Agregar un manejador de eventos al botón "Cerrar"
-    cerrarBtn.addEventListener('click', function () {
-      modal.classList.add('translate'); // Ocultar la ventana modal
-    });
+      // Agregar un manejador de eventos al botón "Cerrar"
+      cerrarBtn.addEventListener('click', function () {
+        modal.classList.add('translate'); // Ocultar la ventana modal
+      });
 
-    modificarVentaBtn.addEventListener('click', function () {
+      modificarVentaBtn.addEventListener('click', function () {
         const selectedRowVentas = getSelectedRowVentas();
         if (selectedRowVentas) {
           const id_ventasAutolavado = selectedRowVentas.cells[0].innerText;
@@ -110,7 +114,7 @@
           const fecha = selectedRowVentas.cells[2].innerText;
           const tipoVehiculo = selectedRowVentas.cells[3].innerText;
           const costo = selectedRowVentas.cells[4].innerText;
-    
+
           // Rellenar el formulario modal con los valores del producto seleccionado
           document.getElementById('id_usuario').value = id_usuario;
           document.getElementById('fecha').value = fecha;
@@ -120,11 +124,64 @@
         }
       });
 
-    
-  </script>
-  <script src="../../Cliente/Logica/autolavado.js"></script>
+
+      function llenarOpcionesTipoVehiculo() {
+        fetch('http://localhost:5000/consultando_precios')
+          .then(response => response.json())
+          .then(data => {
+            const tipoVehiculoSelect = document.getElementById('tipoVehiculo');
+            const costoInput = document.getElementById('costo');
+
+            // Limpia las opciones existentes
+            tipoVehiculoSelect.innerHTML = '<option value="">Selecciona una opcion...</option>';
+
+            // Recorre el array de objetos en la propiedad "data"
+            data.data.forEach(item => {
+              const option = document.createElement('option');
+              option.value = item.tipoAuto;
+              option.textContent = item.tipoAuto;
+              tipoVehiculoSelect.appendChild(option);
+            });
+
+            // Agregar un manejador de eventos al cambio de opción en el campo "Tipo de Vehículo"
+            tipoVehiculoSelect.addEventListener('change', function () {
+              const selectedTipoVehiculo = tipoVehiculoSelect.value;
+
+              // Buscar el objeto en la respuesta del servidor que corresponde al tipo de vehículo seleccionado
+              const selectedData = data.data.find(item => item.tipoAuto === selectedTipoVehiculo);
+
+              if (selectedData) {
+                costoInput.value = selectedData.precio;
+              } else {
+                costoInput.value = ''; // Limpiar el campo si no se encuentra el tipo de vehículo
+              }
+            });
+          })
+          .catch(error => {
+            console.error('Error al obtener datos:', error);
+          });
+      }
+
+
+      // Llama a la función para llenar las opciones de tipoVehiculo
+      llenarOpcionesTipoVehiculo();
+
+      // Agregar un manejador de eventos al cambio de opción en el campo "Tipo de Vehículo"
+      tipoVehiculoSelect.addEventListener('change', function () {
+        const selectedTipoVehiculo = tipoVehiculoSelect.value;
+
+        // Buscar el objeto en la respuesta del servidor que corresponde al tipo de vehículo seleccionado
+        const selectedData = data.find(item => item.tipoAuto === selectedTipoVehiculo);
+
+        if (selectedData) {
+          costoInput.value = selectedData.precio;
+        } else {
+          costoInput.value = ''; // Limpiar el campo si no se encuentra el tipo de vehículo
+        }
+      });
+
+    </script>
+    <script src="../../Cliente/Logica/autolavado.js"></script>
 </body>
 
 </html>
-
-</body>

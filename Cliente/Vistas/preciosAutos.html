@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/30ae896a08.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylo_Inventario.css">
+  <title>Precios Autolavado</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1 class="text-center">PRECIOS DE "LA JOYA"</h1>
+  </div>
+  <div class="contenedor-padre">
+    <div class="contenedor">
+      <div class="botones">
+        <button class="btn btn-success" id="nuevoPrecioBtn"><i class="fa-solid fa-cart-plus"></i>Nuevo
+          Automovil</button>
+        <button class="btn btn-warning" id="modificarPrecioBtn"><i class="fa-solid fa-file-pen"></i>Modificar
+          Precio</button>
+        <button class="btn btn-warning" id="consultarPrecioBtn"><i class="fa-solid fa-magnifying-glass"></i>Consultar
+          Precio</button>
+        <button class="btn btn-danger" id="eliminarPrecioBtn"><i class="fa-sharp fa-solid fa-trash"></i>Eliminar
+          Precio</button>
+        <button class="btn btn-danger" id="regresarBtn"><i class="fa-solid fa-house"></i>Regresar menu</button>
+      </div>
+    </div>
+    <div class="container mt-0 position-relative">
+      <div class="row">
+        <div class="col text-center">
+          <!-- Tabla centrada -->
+          <div class="mx-auto"
+            style="width: fit-content; height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <table class="table table-withe" id="table">
+              <thead>
+                <tr>
+                  <th>idAuto</th>
+                  <th>Tipo de Auto</th>
+                  <th>Precio</th>
+                </tr>
+              </thead>
+              <tbody id="filas">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-absolute w-100 top translate" id="modal" style="background-color: rgb(17, 18, 18, 0.4)">
+      <form class="form-control w-50" id="productForm">
+        <h1 class="text-center">Registrar Precio</h1>
+        <div class="form-control border-white">
+          <label for="tipoAuto">Tipo de Auto :</label>
+          <input type="text" class="form-control w-25" id="tipoAuto">
+        </div>
+        <div class="form-control border-white">
+          <label for="precio">Precio:</label>
+          <input type="number" class="form-control w-25" id="precio" step="0.01">
+        </div>
+        <div class="form-control border-white">
+          <button class="btn btn-primary" id="BtnGuardar">Guardar</button>
+          <button class="btn btn-danger close">Cerrar</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // Obtener referencias a los elementos del DOM
+      const nuevoPrecioBtn = document.getElementById('nuevoPrecioBtn');
+      const modificarPrecioBtn = document.getElementById('modificarPrecioBtn');
+      const consultarPrecioBtn = document.getElementById('consultarPrecioBtn');
+      const eliminarPrecioBtn = document.getElementById('eliminarPrecioBtn');
+      const modal = document.getElementById('modal');
+      const cerrarBtn = document.querySelector('.close');
+      const productForm = document.getElementById('productForm');
+      const tableBody = document.querySelector('#table tbody');
+      const rows = tableBody.getElementsByTagName('tr');
+
+      // Agregar un manejador de eventos al botón "Nuevo Precio"
+      nuevoPrecioBtn.addEventListener('click', function () {
+        modal.classList.remove('translate'); // Mostrar la ventana modal
+      });
+
+      // Agregar un manejador de eventos al botón "Cerrar"
+      cerrarBtn.addEventListener('click', function () {
+        modal.classList.add('translate'); // Ocultar la ventana modal
+      });
+
+      modificarPrecioBtn.addEventListener('click', function () {
+        const selectedRow = getSelectedRow();
+        if (selectedRow) {
+          const idAuto = selectedRow.cells[0].innerText;
+          const tipoAuto = selectedRow.cells[1].innerText;
+          const precio = selectedRow.cells[2].innerText;
+
+          // Rellenar el formulario modal con los valores del Precio seleccionado
+          document.getElementById('tipoAuto').value = tipoAuto;
+          document.getElementById('precio').value = precio;
+
+
+          modal.classList.remove('translate'); // Mostrar la ventana modal
+        }
+      });
+    </script>
+
+    <script src="../../Cliente/Logica/preciosAutos.js"></script>
+</body>
+
+</html>

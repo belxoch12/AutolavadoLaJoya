@@ -19,6 +19,7 @@ const Inventario_Rutas = require('./Rutas/Inventario_Rutas')
 const VentasAutolavado_Rutas = require('./Rutas/VentasAutolavado_Rutas')
 //<<<<<<< HEAD
 const VentasTienda_Rutas = require('./Rutas/VentasTienda_Rutas')
+const preciosAutos_Rutas = require('./Rutas/preciosAutos_Rutas')
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -57,6 +58,7 @@ app.use(Inventario_Rutas)
 app.use(VentasAutolavado_Rutas)
 //<<<<<<< HEAD
 app.use(VentasTienda_Rutas)
+app.use(preciosAutos_Rutas)
 /*=======
 >>>>>>> 6e71fba5470ed99a2fcc9518f0a1e7be66841ef5
 >>>>>>> f34ef78cba35cb5d8a12a65e6c625cffadb61064

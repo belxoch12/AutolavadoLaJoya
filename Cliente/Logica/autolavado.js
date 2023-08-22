@@ -7,9 +7,9 @@ let fecha = document.getElementById('fecha');
 let tipoVehiculo = document.getElementById('tipoVehiculo');
 let costo = document.getElementById('costo');
 
-regresarBtn.addEventListener("click", (e)=>{
-    location.href="/Conexion/Cliente/Vistas/menu.html"
-})
+regresarBtn.addEventListener("click", (e) => {
+  location.href = "/Cliente/Vistas/menu.html";
+});
 
 //LLENADO DE LA TABLA CON LAS RESPUESTA DEL SERVIDOR
 const settings = {

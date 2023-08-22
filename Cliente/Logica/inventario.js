@@ -10,7 +10,7 @@ let salida = document.getElementById('salida');
 let precio = document.getElementById('precio');
 const modificarVentaBtn = document.getElementById("modificarVentaBtn");
 regresarBtn.addEventListener("click", (e) => {
-  location.href = "/Conexion/Cliente/Vistas/menu.html";
+  location.href = "/Cliente/Vistas/menu.html";
 });
 
 //LLENADO DE LA TABLA CON LAS RESPUESTA DEL SERVIDOR

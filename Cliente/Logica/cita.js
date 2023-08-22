@@ -5,9 +5,9 @@ let tipoVehiculo = document.getElementById("tipoVehiculo");
 let fecha = document.getElementById("fecha");
 let hora = document.getElementById("hora");
 
-regresarBtn.addEventListener("click", (e)=>{
-    location.href="/Conexion/Cliente/Vistas/menu.html"
-})
+regresarBtn.addEventListener("click", (e) => {
+  location.href = "/Cliente/Vistas/menu.html";
+});
 
 
 //LLENADO DE LA TABLA CON LAS RESPUESTA DEL SERVIDOR

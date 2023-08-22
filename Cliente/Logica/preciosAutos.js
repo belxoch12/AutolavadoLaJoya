@@ -4,7 +4,7 @@ let BtnConfirmDelete = document.getElementById("eliminarProductoBtn");
 let tipoAuto = document.getElementById('tipoAuto');
 let precio = document.getElementById('precio');
 regresarBtn.addEventListener("click", (e) => {
-    location.href = "/Cliente/Vistas/menu.html";
+    location.href = "/Conexion/Cliente/Vistas/menu.html";
 });
 
 

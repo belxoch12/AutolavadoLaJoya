@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col text-center">       
         <!-- Tabla centrada -->
-        <div class="mx-auto" style="width: fit-content; height: 45vh; display: flex; align-items: center; justify-content: center;">
+        <div class="mx-auto" style="width: fit-content; height: 65vh; display: flex; align-items: center; justify-content: center;">
           <table class="table table-withe" id="table">
             <thead>
               <tr>
@@ -64,10 +64,7 @@
         <div class="form-control border-white">
           <label for="articulo">articulo:</label>
           <select class="form-control" id="articulo">
-            <option value="opcion">Selecciona una opcion...</option>
-            <option value="Limpieza">Kit de Limpieza</option>
-            <option value="Aceites">Aceites</option>
-            <option value="Esponjas">Esponjas</option>
+            <option value="">Selecciona una opcion...</option>
           </select>
         </div>
         <div class="form-control border-white">
@@ -76,7 +73,7 @@
         </div>
         <div class="form-control border-white">
           <label for="costo">costo:</label>
-          <input type="number" class="form-control" id="costo">        
+          <input type="number" class="form-control" id="costo" readonly>        
         </div>
         
       </form>
@@ -90,48 +87,106 @@
 
   <script>
     // Obtener referencias a los elementos del DOM
-    //const eliminarVentasBtn = document.getElementById("eliminarVentasBtn");
-    //const consultarVentasBtn = document.getElementById("consultarVentasBtn");
-    //const BtnGuardarVenta = document.getElementById("BtnGuardarVenta");
-    const modificarVentaTiendaBtn=document.getElementById('modificarVentaTiendaBtn');
-    //const nuevoProductoBtn = document.getElementById('nuevoProductoBtn');
+    const modificarVentaTiendaBtn = document.getElementById('modificarVentaTiendaBtn');
     const modal = document.getElementById('modal');
     const cerrarBtn = document.querySelector('.close');
     const productForm = document.getElementById('productForm');
     const tableBody = document.querySelector('#table tbody');
     const rows = tableBody.getElementsByTagName('tr');
-
+  
     // Agregar un manejador de eventos al botón "Nuevo producto"
     nuevoProductoBtn.addEventListener('click', function () {
       modal.classList.remove('translate'); // Mostrar la ventana modal
     });
-
+  
     // Agregar un manejador de eventos al botón "Cerrar"
     cerrarBtn.addEventListener('click', function () {
       modal.classList.add('translate'); // Ocultar la ventana modal
     });
-
+  
     modificarVentaTiendaBtn.addEventListener('click', function () {
-        const selectedRowVentas = getSelectedRowVentas();
-        if (selectedRowVentas) {
-          const id_ventaTienda = selectedRowVentas.cells[0].innerText;
-          const id_usuario = selectedRowVentas.cells[1].innerText;
-          const fecha = selectedRowVentas.cells[2].innerText;
-          const articulo = selectedRowVentas.cells[3].innerText;
-          const cantidad = selectedRowVentas.cells[4].innerText;
-          const costo = selectedRowVentas.cells[5].innerText;
-    
-          // Rellenar el formulario modal con los valores del producto seleccionado
-          document.getElementById('id_usuario').value = id_usuario;
-          document.getElementById('fecha').value = fecha;
-          document.getElementById('articulo').value = articulo;
-          document.getElementById('cantidad').value = cantidad;
-          document.getElementById('costo').value = costo;
-          modal.classList.remove('translate'); // Mostrar la ventana modal
+      const selectedRowVentas = getSelectedRowVentas();
+      if (selectedRowVentas) {
+        const id_ventaTienda = selectedRowVentas.cells[0].innerText;
+        const id_usuario = selectedRowVentas.cells[1].innerText;
+        const fecha = selectedRowVentas.cells[2].innerText;
+        const articulo = selectedRowVentas.cells[3].innerText;
+        const cantidad = selectedRowVentas.cells[4].innerText;
+        const costo = selectedRowVentas.cells[5].innerText;
+  
+        // Rellenar el formulario modal con los valores del producto seleccionado
+        document.getElementById('id_usuario').value = id_usuario;
+        document.getElementById('fecha').value = fecha;
+        document.getElementById('articulo').value = articulo;
+        document.getElementById('cantidad').value = cantidad;
+        document.getElementById('costo').value = costo;
+        modal.classList.remove('translate'); // Mostrar la ventana modal
+      }
+    });
+
+    let precio = 0;
+  
+    function llenarOpcionesTipoVehiculo() {
+      fetch('http://localhost:5000/consultando_productos')
+        .then(response => response.json())
+        .then(data => {
+          const nombreSelect = document.getElementById('articulo');
+          const precioInput = document.getElementById('costo');
+          const cantidadInput = document.getElementById('cantidad');
+  
+          // Limpia las opciones existentes
+          nombreSelect.innerHTML = '<option value="">Selecciona un producto...</option>';
+  
+          // Recorre el array de objetos en la propiedad "data"
+          data.data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.nombre;
+            option.textContent = item.nombre;
+            nombreSelect.appendChild(option);
+          });
+  
+          // Agregar un manejador de eventos al cambio de opción en el campo "Nombre del Producto"
+          nombreSelect.addEventListener('change', function () {
+            const selectedNombre = nombreSelect.value;
+  
+            // Buscar el objeto en la respuesta del servidor que corresponde al nombre del producto seleccionado
+            const selectedData = data.data.find(item => item.nombre === selectedNombre);
+  
+            if (selectedData) {
+              precioInput.value = selectedData.precio;
+              precio = parseFloat(selectedData.precio);
+              // Multiplicar y mostrar el resultado en el campo de costo
+              const cantidad = parseFloat(cantidadInput.value);
+  
+              if (!isNaN(cantidad) && !isNaN(precio)) {
+                const totalCosto = cantidad * precio;
+                document.getElementById('costo').value = totalCosto.toFixed(2); // Mostrar el costo con dos decimales
+              } else {
+                document.getElementById('costo').value = ''; // Mostrar campo vacío si no se puede calcular el costo
+              }
+            } else {
+              precio = 0;
+              precioInput.value = ''; // Limpiar el campo si no se encuentra el producto
+              document.getElementById('costo').value = ''; // Limpiar el campo de costo
+            }
+          });
+          cantidadInput.addEventListener('change', function () {
+        const cantidad = parseFloat(cantidadInput.value);
+        
+        if (!isNaN(cantidad) && !isNaN(precio)) {
+          const totalCosto = cantidad * precio;
+          document.getElementById('costo').value = totalCosto.toFixed(2);
+        } else {
+          document.getElementById('costo').value = '';
         }
       });
-
-    
+    })
+    .catch(error => {
+      console.error('Error al obtener datos:', error);
+    });
+    }
+  
+    llenarOpcionesTipoVehiculo();
   </script>
   <script src="../../Cliente/Logica/tienda.js"></script>
 </body>

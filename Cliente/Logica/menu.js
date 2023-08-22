@@ -7,29 +7,29 @@ let cerrarsesion = document.getElementById("cerrarsesion")
 
 
 registrotienda.addEventListener("click", (e)=>{
-    location.href="/Cliente/Vistas/VentasTienda.html"
+    location.href="/Conexion/Cliente/Vistas/VentasTienda.html"
 })
 
 registroAutolavado.addEventListener("click", (e)=>{
-    location.href="/Cliente/Vistas/VentasAutolavado.html"
+    location.href="/Conexion/Cliente/Vistas/VentasAutolavado.html"
 })
 
 citas.addEventListener("click", (e)=>{
-    location.href="/Cliente/Vistas/cita.html"
+    location.href="/Conexion/Cliente/Vistas/cita.html"
 })
 
 historialVentas.addEventListener("click", (e)=>{
-    location.href="/Cliente/Vistas/historial.html"
+    location.href="/Conexion/Cliente/Vistas/historial.html"
 })
 
 inventario.addEventListener("click", (e)=>{
-    location.href="/Cliente/Vistas/Inventario.html"
+    location.href="/Conexion/Cliente/Vistas/Inventario.html"
 })
 
 precios.addEventListener("click", (e)=>{
-    location.href="/Cliente/Vistas/preciosAutos.html"
+    location.href="/Conexion/Cliente/Vistas/preciosAutos.html"
 })
 
 cerrarsesion.addEventListener("click", (e)=>{
-    location.href="/Cliente/index.html"
+    location.href="/Conexion/Cliente/index.html"
 })

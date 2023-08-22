@@ -17,8 +17,8 @@ body {
     border-radius: 20px;
     padding: 20px;
     max-width: 450px;
-    height: 400px;
-    margin: 100px 0px 100px 900px; /* Alinear a la derecha */
+    height: 450px;
+    margin: 50px 20px 0 900px; /* Alinear a la derecha */
     display: flex;
     justify-content: center;
     align-items: center;

@@ -58,10 +58,7 @@
       <div class="form-control border-white">
         <label for="tipoVehiculo">tipoVehiculo:</label>
         <select class="form-control" id="tipoVehiculo">
-          <option value="Sedan">Selecciona una opcion...</option>
-          <option value="Sedan">Sedan</option>
-          <option value="SUV">SUV</option>
-          <option value="Camioneta">Camioneta</option>
+          <option value="">Selecciona una opcion...</option>
         </select>
       </div>
       <div class="form-control border-white">
@@ -119,6 +116,47 @@
         modal.classList.remove('translate'); // Mostrar la ventana modal
       }
     });
+
+
+    function llenarOpcionesTipoVehiculo() {
+        fetch('http://localhost:5000/consultando_precios')
+          .then(response => response.json())
+          .then(data => {
+            const tipoVehiculoSelect = document.getElementById('tipoVehiculo');
+            const costoInput = document.getElementById('costo');
+
+            // Limpia las opciones existentes
+            tipoVehiculoSelect.innerHTML = '<option value="">Selecciona una opcion...</option>';
+
+            // Recorre el array de objetos en la propiedad "data"
+            data.data.forEach(item => {
+              const option = document.createElement('option');
+              option.value = item.tipoAuto;
+              option.textContent = item.tipoAuto;
+              tipoVehiculoSelect.appendChild(option);
+            });
+            // Agregar un manejador de eventos al cambio de opción en el campo "Tipo de Vehículo"
+            tipoVehiculoSelect.addEventListener('change', function () {
+              const selectedTipoVehiculo = tipoVehiculoSelect.value;
+
+              // Buscar el objeto en la respuesta del servidor que corresponde al tipo de vehículo seleccionado
+              const selectedData = data.data.find(item => item.tipoAuto === selectedTipoVehiculo);
+
+              if (selectedData) {
+                costoInput.value = selectedData.precio;
+              } else {
+                costoInput.value = ''; // Limpiar el campo si no se encuentra el tipo de vehículo
+              }
+            });
+          })
+          .catch(error => {
+            console.error('Error al obtener datos:', error);
+          });
+      }
+
+      
+      // Llama a la función para llenar las opciones de tipoVehiculo
+      llenarOpcionesTipoVehiculo();
   </script>
 
   <script src="../../Cliente/Logica/cita.js"></script>

@@ -2,41 +2,35 @@ const connection = require("./conexion");
 
 class Inventario_Modelo{
 
-    constructor(id_inventario, codigo, nombre, descripcion, cantidad, entrada, salida, precio) {
+    constructor(id_inventario, codigo, nombre, descripcion, cantidad, precio) {
         this.id_inventario = id_inventario;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
-        this.entrada = entrada;
-        this.salida = salida;
         this.precio = precio; 
     }
 
     agregar_producto() {
         return new Promise((resolve, reject) => {
             // Verificar que los valores sean números válidos antes de la conversión
-            console.log("Valores antes de la validación:", this.cantidad, this.entrada, this.salida, this.precio);
+            console.log("Valores antes de la validación:", this.cantidad,  this.precio);
 
             if (
                 isNaN(parseInt(this.cantidad)) ||
-                isNaN(parseInt(this.entrada)) ||
-                isNaN(parseInt(this.salida)) ||
                 isNaN(parseFloat(this.precio))
             ) {
                 return reject(new Error("Valores numéricos inválidos"));
             }
     
-            let SentenciaSQL = `INSERT INTO inventario(codigo, nombre, descripcion, cantidad, entrada, salida, precio)
-                VALUES (?, ?, ?, ?, ?, ?, ?)`;
+            let SentenciaSQL = `INSERT INTO inventario(codigo, nombre, descripcion, cantidad, precio)
+                VALUES (?, ?, ?, ?, ?)`;
     
             let values = [
                 this.codigo,
                 this.nombre,
                 this.descripcion,
                 parseInt(this.cantidad),
-                parseInt(this.entrada),
-                parseInt(this.salida),
                 parseFloat(this.precio)
             ];
     
@@ -78,8 +72,7 @@ class Inventario_Modelo{
         //Logica y Sentencia SQL para relizar x operación sobre los datos
         return new Promise((resolve, reject) => {
             let SentenciaSQL = `UPDATE inventario SET nombre = "${this.nombre}", 
-            descripcion = "${this.descripcion}", cantidad = ${parseInt(this.cantidad)}, entrada = ${parseInt(this.entrada)},
-             salida = ${parseInt(this.salida)}, precio=${parseFloat(this.precio)} WHERE id_inventario = ${parseInt(this.id_inventario)};`
+            descripcion = "${this.descripcion}", cantidad = ${parseInt(this.cantidad)}, precio=${parseFloat(this.precio)} WHERE id_inventario = ${parseInt(this.id_inventario)};`
             connection.query(`${SentenciaSQL}`, (err, rows) => {
                 if (err || rows.length == 0) return reject(err)
                 return resolve(rows)

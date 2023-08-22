@@ -6,7 +6,7 @@ let fecha = document.getElementById("fecha");
 let hora = document.getElementById("hora");
 
 regresarBtn.addEventListener("click", (e) => {
-  location.href = "/Cliente/Vistas/menu.html";
+  location.href = "/Conexion/Cliente/Vistas/menu.html";
 });
 
 

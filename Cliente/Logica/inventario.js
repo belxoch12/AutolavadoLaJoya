@@ -4,13 +4,11 @@ let BtnConfirmDelete = document.getElementById("eliminarProductoBtn");
 let codigo = document.getElementById('codigo');
 let nombre = document.getElementById('nombre');
 let descripcion = document.getElementById('descripcion');
-let cantidad = document.getElementById('cantidad');
-let entrada = document.getElementById('entrada');
 let salida = document.getElementById('salida');
 let precio = document.getElementById('precio');
 const modificarVentaBtn = document.getElementById("modificarVentaBtn");
 regresarBtn.addEventListener("click", (e) => {
-  location.href = "/Cliente/Vistas/menu.html";
+  location.href = "/Conexion/Cliente/Vistas/menu.html";
 });
 
 //LLENADO DE LA TABLA CON LAS RESPUESTA DEL SERVIDOR
@@ -38,8 +36,6 @@ fetch('http://localhost:5000/consultando_productos', settings)
                 <td>${producto.nombre}</td>
                 <td>${producto.descripcion}</td>
                 <td>${producto.cantidad}</td>
-                <td>${producto.entrada}</td>
-                <td>${producto.salida}</td>
                 <td>${producto.precio}</td>
             `;
 
@@ -79,8 +75,6 @@ BtnGuardar.addEventListener("click", (e) => {
       nombre: nombre.value,
       descripcion: descripcion.value,
       cantidad: cantidad.value,
-      entrada: entrada.value,
-      salida: salida.value,
       precio: precio.value
     };
 
@@ -107,8 +101,6 @@ BtnGuardar.addEventListener("click", (e) => {
         nombre: nombre.value,
         descripcion: descripcion.value,
         cantidad: cantidad.value,
-        entrada: entrada.value,
-        salida: salida.value,
         precio: precio.value
       };
     console.log(dataFormat);
@@ -231,8 +223,7 @@ consultarProductoBtn.addEventListener('click', function () {
       const nombre = productRow.cells[2].innerText;
       const descripcion = productRow.cells[3].innerText;
       const cantidad = productRow.cells[4].innerText;
-      const entrada = productRow.cells[5].innerText;
-      const salida = productRow.cells[6].innerText;
+      const precio = productRow.cells[5].innerText;
 
       // Crear la pantalla modal para mostrar los detalles del producto consultado
       const detailsModal = document.createElement('div');
@@ -248,8 +239,7 @@ consultarProductoBtn.addEventListener('click', function () {
     Nombre: ${nombre}<br>
     Descripción: ${descripcion}<br>
     Cantidad: ${cantidad}<br>
-    Entrada: ${entrada}<br>
-    Salida: ${salida}`;
+    Precio: ${precio}`;
 
       detailsContent.appendChild(details);
 
@@ -310,22 +300,3 @@ function findProductById(productId) {
   }
   return null; // Producto no encontrado
 }
-
-modificarVentaBtn.addEventListener('click', function () {
-  const selectedRow = getSelectedRow();
-  if (selectedRow) {
-    const id_ventasAutolavado = selectedRow.cells[0].innerText;
-    const id_usuario = selectedRow.cells[1].innerText;
-    const fecha = selectedRow.cells[2].innerText;
-    const tipoVehiculo = selectedRow.cells[3].innerText;
-    const costo = selectedRow.cells[4].innerText;
-
-    // Rellenar el formulario modal con los valores del producto seleccionado
-    document.getElementById('id_usuario').value = id_usuario;
-    document.getElementById('fecha').value = fecha;
-    document.getElementById('tipoVehiculo').value = tipoVehiculo;
-    document.getElementById('costo').value = costo;
-
-    modal.classList.remove('translate'); // Mostrar la ventana modal
-  }
-});
